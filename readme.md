@@ -1,5 +1,6 @@
 # gulp-power-doctest
 
+[azu/power-doctest](https://github.com/azu/power-doctest "azu/power-doctest") for [gulp](http://gulpjs.com/ "gulp").
 
 ## Installation
 
