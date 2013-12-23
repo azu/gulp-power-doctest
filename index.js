@@ -9,7 +9,7 @@ module.exports = function (options) {
             fileData: contents
         }, options);
         if (results && results.length > 0) {
-            return callback(new Error(power.printTestResult(results)), file);
+            return callback(power.printTestResult(results), file);
         }
         callback(null, file);
     });

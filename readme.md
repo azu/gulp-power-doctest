@@ -9,7 +9,16 @@ npm install gulp-power-doctest --save-dev
 
 ## Usage
 
+`gulpfile.js`
 
+``` js
+var gulp = require('gulp');
+var powerDoctest = require("gulp-power-doctest");
+gulp.task('tests', function () {
+    gulp.src("tests/**/*.js")
+        .pipe(powerDoctest());
+});
+```
 
 ## Contributing
 
