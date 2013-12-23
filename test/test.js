@@ -14,18 +14,14 @@ describe('gulp-power-doctest testing', function () {
     context("when passed testing", function () {
         var filePath = path.join(__dirname, './fixtures/example.js');
         it("should run power-doctest and pass", function (done) {
-            process.stdout.write = function (str) {
-                if (/PASS/.test(gutil.colors.stripColor(str))) {
-                    assert(true);
-                    process.stdout.write = out;
-                    done();
-                }
-            };
-            powerDoctest().write(new gutil.File({
-                path: "./fixture/example.js",
-                cwd: "./",
-                base: "./fixture/",
-                contents: fs.readFileSync(filePath)
+            gulp.src(filePath).pipe(powerDoctest()).pipe(es.map(function (file) {
+                var contents = fs.readFileSync(filePath, "utf-8");
+                var expected = powerDoctest.runDocTest({
+                    filePath : filePath,
+                    fileData : contents
+                });
+                assert(expected.length === 0);
+                done();
             }));
         });
     });

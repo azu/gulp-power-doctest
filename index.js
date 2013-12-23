@@ -10,9 +10,8 @@ module.exports = function (options) {
         }, options);
         if (results && results.length > 0) {
             return callback(new Error(power.printTestResult(results)), file);
-        } else {
-            power.printTestResult(results);
         }
         callback(null, file);
     });
 };
+module.exports.runDocTest = power.runDocTest;
