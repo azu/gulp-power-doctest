@@ -1,7 +1,7 @@
 {
   "name": "gulp-power-doctest",
   "version": "0.1.0",
-  "description": "power-doctest with gulp.",
+  "description": "gulp plugin for power-doctest.",
   "main": "index.js",
   "scripts": {
     "test": "mocha"
