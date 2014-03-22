@@ -8,19 +8,14 @@ module.exports = function (options) {
         if (!contents || contents.length === 0) {
             return callback(null, file);
         }
-        var results;
-        try {
-            results = power.runDocTest({
-                filePath: file.path,
-                fileData: contents
-            }, options);
-        } catch (e) {
-            gutil.log(e + " @ " + file.path);
-        }
-        if (results && results.length > 0) {
-            return callback(power.printTestResult(results), file);
-        }
-        callback(null, file);
+        options.filePath = file.path;
+        power.runDocTestAsPromise(contents, options)
+            .then(function (result) {
+                gutil.log(result + " PASSED");
+                callback(null, file);
+            }).catch(function (error) {
+                callback(power.printTestResult(error), file);
+            });
     });
 };
-module.exports.runDocTest = power.runDocTest;
+module.exports.runDocTestAsPromise = power.runDocTestAsPromise;

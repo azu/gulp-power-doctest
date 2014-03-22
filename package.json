@@ -22,12 +22,12 @@
   },
   "homepage": "https://github.com/azu/gulp-power-doctest",
   "dependencies": {
-    "event-stream": "~3.0.20",
+    "event-stream": "~3.1.0",
     "gulp-util": "~2.2.0",
-    "power-doctest": "~0.2"
+    "power-doctest": "~0.3"
   },
   "devDependencies": {
-    "mocha": "~1.16.1",
-    "gulp": "~3.2.1"
+    "mocha": "~1.18.2",
+    "gulp": "~3.5.6"
   }
 }

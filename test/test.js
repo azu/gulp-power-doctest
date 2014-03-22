@@ -16,12 +16,13 @@ describe('gulp-power-doctest testing', function () {
         it("should run power-doctest and pass", function (done) {
             gulp.src(filePath).pipe(powerDoctest()).pipe(es.map(function (file) {
                 var contents = fs.readFileSync(filePath, "utf-8");
-                var expected = powerDoctest.runDocTest({
-                    filePath : filePath,
-                    fileData : contents
-                });
-                assert(expected.length === 0);
-                done();
+                powerDoctest.runDocTestAsPromise(contents, {
+                    filePath: filePath
+                }).then(function (results) {
+                    assert(results > 0);
+                    done();
+                }).catch(done);
+
             }));
         });
     });
