@@ -1,6 +1,7 @@
 var es = require("event-stream");
 var power = require("power-doctest");
 var gutil = require('gulp-util');
+var pather = require("path");
 module.exports = function (options) {
     options = options || {};
     return es.map(function (file, callback) {
@@ -11,7 +12,7 @@ module.exports = function (options) {
         options.filePath = file.path;
         power.runDocTestAsPromise(contents, options)
             .then(function (result) {
-                gutil.log(result + " PASSED");
+                gutil.log(pather.basename(file.path) + " " + result + " PASSED");
                 callback(null, file);
             }).catch(function (error) {
                 callback(power.printTestResult(error), file);
